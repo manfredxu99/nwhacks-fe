@@ -1,7 +1,8 @@
 import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+
 import LoginScreen from 'App/Scenes/LoginScreen'
 import SignupScreen from 'App/Scenes/SignupScreen'
 //Main Screen
@@ -12,6 +13,22 @@ import { Image, Text } from 'react-native'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
+
+function getHeaderTitle(route) {
+  // If the focused route is not found, we need to assume it's the initial screen
+  // This can happen during if there hasn't been any navigation inside the screen
+  // In our case, it's "Feed" as that's the first screen inside the navigator
+  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Main'
+
+  switch (routeName) {
+    case 'Map':
+      return 'Map'
+    case 'Report':
+      return 'Report'
+    case 'Profile':
+      return 'Profile'
+  }
+}
 
 const MainScreen = () => {
   return (
@@ -37,7 +54,7 @@ const MainScreen = () => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: '#7A7A7A',
+        activeTintColor: 'black',
         inactiveTintColor: '#B9ACAC',
       }}>
       <Tab.Screen name="Map" component={MapScreen} />
@@ -53,7 +70,13 @@ const NavigationRouter = () => {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Signup" component={SignupScreen} />
-        <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen
+          name="Main"
+          component={MainScreen}
+          options={({ route }) => ({
+            headerTitle: getHeaderTitle(route),
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )
