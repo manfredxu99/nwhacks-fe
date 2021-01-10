@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TextInput } from 'react-native'
+import { View, TextInput, Button } from 'react-native'
 import StyleSheet from 'App/Themes/StyleSheet'
 import Text from 'App/Components/Text'
 
@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const onLogIn = () => {
+    navigation.replace('Main')
+  }
   const onSignUp = () => {
     navigation.navigate('Signup')
   }
@@ -34,6 +37,9 @@ const LoginScreen = ({ navigation }) => {
         onChangeText={(text) => setPassword(text)}
         textContentType="password"
       />
+      <View style={{ marginBottom: 10 }}>
+        <Button title="Log In" onPress={onLogIn} />
+      </View>
       <Text>
         Don't have an account? <Text onPress={onSignUp}>Sign Up</Text>
       </Text>
