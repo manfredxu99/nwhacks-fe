@@ -1,17 +1,26 @@
 import React from 'react'
 import { View, Image, TextInput, Button } from 'react-native'
 import StyleSheet from 'App/Themes/StyleSheet'
+import Text from 'App/Components/Text'
 
 const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: 'black',
-    marginTop: 20,
     alignSelf: 'stretch',
     borderRadius: 10,
     paddingHorizontal: 10,
   },
 })
+
+const Input = ({ label, ...props }) => {
+  return (
+    <View style={{ marginTop: 20, alignSelf: 'stretch' }}>
+      <Text style={{ marginBottom: 4 }}>{label}</Text>
+      <TextInput {...props} />
+    </View>
+  )
+}
 
 const PROFILE_PIC_URI =
   'https://scontent.fyvr5-1.fna.fbcdn.net/v/t1.15752-9/138265086_3439276426169906_6120664083236714894_n.jpg?_nc_cat=107&ccb=2&_nc_sid=ae9488&_nc_ohc=jOQinVGVSdUAX8J0x-c&_nc_ht=scontent.fyvr5-1.fna&oh=ca8e8deffa1dd3714e71fd09e40b767a&oe=6020A87F'
@@ -45,9 +54,9 @@ const ProfileScreen = () => {
             />
           </View>
         </View>
-        <TextInput style={styles.input} placeholder="Name" value="Paul Lam" />
-        <TextInput style={styles.input} placeholder="Address" value="1951 E 35th Avenue" />
-        <TextInput style={styles.input} placeholder="Age" value="24" />
+        <Input style={styles.input} label="Name" value="Paul Lam" />
+        <Input style={styles.input} label="Address" value="1951 E 35th Avenue" />
+        <Input style={styles.input} label="Age" value="24" />
         <View style={{ marginTop: 20, alignSelf: 'stretch' }}>
           <Button title="Close Contacts: 3" style={{ alignSelf: 'stretch' }} />
         </View>
