@@ -5,4 +5,7 @@ export default {
   screenPadding: {
     padding: 16,
   },
+  centerText: {
+    textAlign: 'center',
+  },
 }
