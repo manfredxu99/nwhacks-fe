@@ -8,4 +8,10 @@ export default {
   centerText: {
     textAlign: 'center',
   },
+  justifyCenter: {
+    justifyContent: 'center',
+  },
+  alignCenter: {
+    alignItems: 'center',
+  },
 }
