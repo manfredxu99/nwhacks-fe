@@ -2,6 +2,7 @@ import React from 'react'
 import { View, TextInput, Button } from 'react-native'
 import StyleSheet from 'App/Themes/StyleSheet'
 import Text from 'App/Components/Text'
+import api from 'App/api'
 
 const styles = StyleSheet.create({
   input: {
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
-  const onLogIn = () => {
+  const onLogIn = async () => {
     navigation.replace('Main')
   }
   const onSignUp = () => {

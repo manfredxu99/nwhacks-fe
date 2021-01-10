@@ -1,7 +1,7 @@
 import axiosLib from 'axios'
 
 const axios = axiosLib.create({
-  baseURL: 'http://localhost:3000/',
+  baseURL: 'http://192.168.0.11:3000/',
 })
 
 const api = {

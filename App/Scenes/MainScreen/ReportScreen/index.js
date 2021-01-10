@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
 const ReportScreen = () => {
   const [showVerificationCode, setShowVerificationCode] = React.useState(false)
   const [verificationCode, setVerificationCode] = React.useState('')
+  const [submitSuccess, setSubmitSuccess] = React.useState(false)
   const iHaveCovid = () => {
     setShowVerificationCode(true)
   }
@@ -52,15 +53,21 @@ const ReportScreen = () => {
             padding: 32,
             alignItems: 'center',
           }}>
-          <Text style={{ fontSize: 20 }}>What is your verification code?</Text>
-          <TextInput
-            style={styles.verificationCodeInput}
-            value={verificationCode}
-            onChangeText={(text) => setVerificationCode(text)}
-          />
-          <TouchableOpacity style={styles.submitBtn}>
-            <Text style={{ color: 'white', fontSize: 20 }}>Submit Key</Text>
-          </TouchableOpacity>
+          {submitSuccess ? (
+            <Text>Thanks for reporting!</Text>
+          ) : (
+            <>
+              <Text style={{ fontSize: 20 }}>What is your verification code?</Text>
+              <TextInput
+                style={styles.verificationCodeInput}
+                value={verificationCode}
+                onChangeText={(text) => setVerificationCode(text)}
+              />
+              <TouchableOpacity style={styles.submitBtn} onPress={() => setSubmitSuccess(true)}>
+                <Text style={{ color: 'white', fontSize: 20 }}>Submit Key</Text>
+              </TouchableOpacity>
+            </>
+          )}
         </View>
       ) : (
         <>
